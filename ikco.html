@@ -1,0 +1,409 @@
+<!-- 
+    All rights reserved :
+    coded by alireza mhm ;
+    github : github.com/wwwAlireza ;
+    codepen : codepen.io/alireza ;
+ -->
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ikco |  لیست ثبت نام</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="sthortcut icon" href="engine/content/favicon.ico">
+    <link rel="stylesheet" href="engine/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="engine/style/mainStyle.css">
+</head>
+
+<body>
+    <div id="loading" class="d-none">
+        <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="header-status">
+        | <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </span>
+        <span class="text">
+            <span class="username">
+                admin |
+            </span>
+        <span class="clock">
+            <span id="header-clock-hour">00</span><span style="padding-left: 2px;padding-right: 2px;">:</span><span id="header-clock-minute">00</span> <span id="header-clock-ampm">--</span>
+        </span>
+        -
+        <span class="date">
+            <span id="header-date-year">0000</span> / <span id="header-date-month">00</span> / <span id="header-date-day">00</span>
+        </span>
+        </span> |
+    </div>
+    <!-- alert -->
+    <div class="alert-container col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 col-xxl-3 d-none">
+        <div class="alert alert-success alert-dismissible col-12" dir="rtl">
+            <button class="btn-close alert-close" style="transform: scale(.9);"></button>
+            <span class="alert-text"></span>
+        </div>
+    </div>
+
+    <!-- add new user -->
+    <div class="newUser-container col-10 col-sm-7 col-lg-5 col-xl-4 col-xxl-3 rounded border border-dark d-none">
+        <!-- header -->
+        <div class="newUser-header w-100 pe-1">
+            <div class="close-newUser p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <span class="title-newUser text-white">افزودن کاربر</span>
+            <span class="newUser-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            </span>
+        </div>
+        <!-- body -->
+        <div class="newUser-body w-100 h-100 pt-4">
+            <!-- input name -->
+            <div class="newUser-input-container">
+                <div class="w-100 d-flex justify-content-center flex-row-reverse">
+                    <div class="newUser-input-icon name-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <input id="input-name" maxlength="20" type="text" style="padding: 10px 4px 16px 13px;" class="newUser-input" autocomplete="off" spellcheck="false" placeholder="نام">
+                </div>
+                <span class="invalid invalid-name" style="visibility: hidden;">ورودی نامعتبر</span>
+            </div>
+
+            <!-- input last name -->
+            <div class="newUser-input-container mt-1">
+                <div class="w-100 d-flex justify-content-center flex-row-reverse">
+                    <div class="newUser-input-icon lastName-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <input id="input-lastName" maxlength="25" type="text" class="newUser-input" autocomplete="off" spellcheck="false" placeholder="نام خانوادگی">
+                </div>
+                <span class="invalid invalid-lastName" style="visibility: hidden;">ورودی نامعتبر</span>
+            </div>
+
+            <!-- input id-->
+            <div class="newUser-input-container mt-1">
+                <div class="w-100 d-flex justify-content-center flex-row-reverse">
+                    <div class="newUser-input-icon id-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    </div>
+                    <input id="input-id" type="number" min="1111111111" max="9999999999" maxlength="10" class="newUser-input" autocomplete="off" spellcheck="false" placeholder="کد ملی">
+                </div>
+                <span class="invalid invalid-id" style="visibility: hidden;">ورودی نامعتبر</span>
+            </div>
+
+            <!-- buttons -->
+            <div class="buttons-container pt-2 d-flex">
+                <button id="cancel-btn" type="button" class="btn btn-outline-danger newUser-btn">لغو</button>
+                <div class="p-1"></div>
+                <button id="record-btn" type="button" class="btn btn-outline-success newUser-btn">ثبت</button>
+                <button id="edit-btn" type="button" class="btn btn-outline-success newUser-btn d-none">ویرایش</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="col-10 col-lg-8 col-xl-7" style="height: 70vh;">
+        <div class="position-relative" style="bottom: 5px;">
+            <button title="کاربر جدید" class="btn btn-sm btn-primary float-end m-1 me-0" id="newUserBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            </button>
+            <button title="جستجو" class="btn btn-sm btn-primary float-end m-1" id="searchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <div class="input-search-container">
+                <div class="dropdown">
+                    <button type="button" id="basedon-btn" class="btn btn-dark dropdown-toggle" dir="rtl" data-bs-toggle="dropdown">
+                        نام
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-end">
+                        <li><span class="dropdown-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            بر اساس
+                        </span></li>
+                        <li><button class="dropdown-item" onclick="changeBasedOn('name')">نام -</button></li>
+                        <li><button class="dropdown-item" onclick="changeBasedOn('lastName')">نام خانوادگی -</button></li>
+                        <li><button class="dropdown-item" onclick="changeBasedOn('id')">کد ملی -</button></li>
+                        <li><button class="dropdown-item" onclick="changeBasedOn('code')">کد -</button></li>
+                    </ul>
+                </div>
+                <input type="text" maxlength="25" class="input-search" placeholder="جستجو...." autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+        <div class="table-container col-12 table-responsive rounded" style="min-height: 100%;">
+            <table dir="rtl" class="table table-dark text-white text-center table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">نام خانوادگی</th>
+                        <th scope="col">کدملی</th>
+                        <th scope="col">ثبت نام</th>
+                        <th scope="col">کد</th>
+                        <th scope="col" class="user-setting">تنظیمات</th>
+                    </tr>
+                </thead>
+                <tbody id="mainTableBody">
+                    <!-- data inser here -->
+                </tbody>
+            </table>
+            <button title="چاپ" type="button" id="print-btn" class="bg-transparent border-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            </button>
+        </div>
+    </div>
+    <!-- delete user -->
+    <div class="delete-user-container d-none rounded border border-dark">
+        <div class="close-delete-user p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <p class="mb-0 text-light delete-user-title text-center">
+            <span>
+                آیا از حذف کاربر { <span class="delete-user-name"></span> <span class="delete-user-lastName"></span> } با کد ملی <span class="delete-user-id"></span> مطمعنید ؟
+            </span>
+        </p>
+        <div class="delete-user-buttons">
+            <button type="button" class="btn btn-danger py-1" id="delete-user-false">لغو</button>
+            <div style="padding: 2px;"></div>
+            <button type="button" class="btn btn-success py-1" id="delete-user-true">حذف</button>
+        </div>
+    </div>
+    <!-- setting-->
+    <button class="setting-conteiner">
+
+        <div class="setting-items-container">
+            <div class="setting-item" id="setting-database">
+                <span class="setting-item-title">دیتابیس</span>
+                <svg class="setting-item-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </div>
+
+            <div class="setting-item" id="setting-password">
+                <span class=" setting-item-title ">گذرواژه</span>
+                <svg class="setting-item-icon " xmlns="http://www.w3.org/2000/svg " width="22 " height="22 " viewBox="0 0 24 24 " fill="none " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round "><rect x="3 " y="11 " width="18
+                " height="11 " rx="2 " ry="2 "></rect><path d="M7 11V7a5 5 0 0 1 10 0v4 "></path></svg>
+            </div>
+
+            <div class="setting-item " id="setting-info">
+                <span class="setting-item-title ">درباره</span>
+                <svg class="setting-item-icon " xmlns="http://www.w3.org/2000/svg " width="22 " height="22 " viewBox="0 0 24 24 " fill="none " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round "><circle cx="12 " cy="12 " r="10
+                "></circle><line x1="12 " y1="16 " x2="12 " y2="12 "></line><line x1="12 " y1="8 " x2="12.01 " y2="8 "></line></svg>
+            </div>
+        </div>
+        <div class="setting-btn">
+            <svg xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round " class="feather feather-settings "><circle cx="12 " cy="12 " r="3
+                "></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83
+                0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65
+                0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65
+                0 0 0-1.51 1z "></path></svg>
+        </div>
+        <!-- setting info -->
+        <div class="setting-info-container d-none">
+            <div class="close-setting-info p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <div class="setting-info-header">
+                <div class="ikco-logo">
+                    <img class="main-logo" src="engine/content/ikco.png" alt="ikco logo">
+                </div>
+                <div class="ikco-title">
+                    <span class="title">Registration list manager</span>
+                    <span class="version">iranKhodro - v 1.0</span>
+                </div>
+            </div>
+            <div class="setting-info-body">
+                <span class="coded-by">&lt; Coded By alireza mHm &gt;</span>
+            </div>
+            <div class="setting-info-footer">
+                <div class="social-logo-container" data-bs-toggle="tooltip" data-bs-placement="left" title="GitHub" data-bs-offset="0,7px" onclick="openLink(`https://github.com/wwwAlireza`)">
+                    <img class="social-logo" src="engine/content/github.png" alt="github logo">
+                </div>
+                <div class="social-logo-container">
+                    <img class="social-logo" src="engine/content/codepen.png" alt="codepen logo" data-bs-toggle="tooltip" data-bs-placement="top" title="CodePen" data-bs-offset="0,7px" onclick="openLink(`https://codepen.io/alireza82`)"> 
+                </div>
+                <div class="social-logo-container">
+                    <img class="social-logo" src="engine/content/telegram.png" alt="telegram logo" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram" data-bs-offset="0,7px" onclick="openLink(`https://t.me/user_0191`)">
+                </div>
+                <div class="social-logo-container">
+                    <img class="social-logo" src="engine/content/barnamenevisan.png" alt="barnamenevisan logo" data-bs-toggle="tooltip" data-bs-placement="top" title="BarnameNevisan" data-bs-offset="0,14px" onclick="openLink(`https://barnamenevisan.org/Profile/68586/alirezaM`)">
+                </div>
+            </div>
+        </div>
+    </button>
+
+    <div class="setting-password-container rounded border border-dark shadow d-none">
+        <div class="setting-password-delete d-none">
+            <div class="title text-center">
+                <span class="w-100">
+                    آیا از حذف کلی گذرواژه اطمینان دارید ؟
+                    <br>
+                    در این صورت در حین ورود به سیستم دیگر گذرواژه ای درخواست نخواهد شد !
+                </span>
+            </div>
+            <div class="p-2"></div>
+            <div class="buttons">
+                <button type="button" id="setting-password-delete-cancel" class="btn btn-outline-light" style="opacity: .8;">لغو</button>
+                <button type="button" id="setting-password-delete-delete" class="btn btn-danger">حذف</button>
+            </div>
+        </div>
+
+        <div class="settign-passowrd-header">
+            <svg class="setting-item-icon " xmlns="http://www.w3.org/2000/svg " width="20 " height="20" viewBox="0 0 24 24 " fill="none " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round "><rect x="3 " y="11 " width="18
+            " height="11 " rx="2 " ry="2 "></rect><path d="M7 11V7a5 5 0 0 1 10 0v4 "></path></svg>
+            <span class="title">
+                <span id="setting-password-title">تغییر / تنظیم گذرواژه</span>
+            <div class="close-setting-password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            </span>
+        </div>
+
+        <div class="setting-password-body">
+            <div class="setting-password-input">
+                <input type="password" autocomplete="off" spellcheck="false" placeholder="گذرواژه قبلی" maxlength="16" class="input rounded border-dark border" id="last-password">
+                <span class="invalid invalid-last-password">گذرواژه نامعتبر</span>
+            </div>
+
+            <div class="setting-password-input">
+                <input type="password" autocomplete="off" spellcheck="false" placeholder="گذرواژه جدید" maxlength="16" class="input rounded border-dark border" id="new-password">
+                <span class="invalid invalid-new-password">باید بین 4 تا 16 رقم باشد</span>
+            </div>
+
+            <div class="setting-password-input">
+                <input type="password" autocomplete="off" spellcheck="false" placeholder="تکرار گذرواژه" maxlength="16" class="input rounded border-dark border" id="repet-password">
+                <span class="invalid invalid-repet-password">گذرواژه نابرابر</span>
+            </div>
+        </div>
+
+        <div class="setting-password-footer">
+            <button type="button" class="btn btn-danger" id="setting-password-cancel">لغو</button>
+            <button type="buttonb" class="btn btn-success" id="setting-password-record">ثبت</button>
+
+            <div class="setting-password-options">
+                <div class="delete-password option p-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10px" title="حذف کلی گذرواژه">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                </div>
+                <div class="visible-passowrd option p-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10px" title="مشاهده / مخفی در حین تایپ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- setting database -->
+    <!-- ask before -->
+    <div class="database-ask-container border border-dark rounded d-none">
+        <div class="database-ask-header">
+            <div class="database-ask-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </div>
+            <div class="database-ask-header-right">
+                <div class="database-ask-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
+                <div class="database-ask-title">
+                    ویرایش دیتابیس
+                </div>
+            </div>
+        </div>
+        <div class="database-ask-body">
+            <p class="database-ask-text">
+                کاربر گرامی، قسمتی که انتخاب کرده اید برای ویرایش دستی دیتابیس تنظیم شده است. چنانجه از مفاهیم json و دیتابیس و همچنین برنامه نویسی آگاهی ندارید، وارد این بخش نشوید، زیرا هرگونه تغییرات غیر اصولی باعث بروز خطا و عدم نمایش کاربران در جدول میشود
+            </p>
+        </div>
+        <div class="database-ask-footer">
+            <button type="button" class="btn btn-outline-light" id="database-ask-cancel">خروج</button>
+            <div style="padding: 4px;"></div>
+            <button type="button" class="btn btn-primary" id="database-ask-agree">موافقت و ادامه</button>
+        </div>
+    </div>
+
+    <!-- database tab -->
+    <div class="setting-database-container rounded border border-dark d-none">
+        <div class="setting-database-header">
+            <div class="setting-database-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </div>
+            <div class="setting-database-header-rigth">
+                <div class="setting-database-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
+                <span class="setting-database-title">
+                    ویرایش دیتابیس
+                </span>
+            </div>
+        </div>
+
+        <div class="setting-database-body">
+            <p class="mb-0" style="background-color: rgba(37, 38, 41, .4);color: var(--bs-danger);"> [</p><pre id="database-value" class="setting-database-value" contenteditable="true" spellcheck="false">
+            </pre>
+            <p class="mt-1 position-relative" style="background-color: rgba(37, 38, 41, .4);bottom: 16px;color: var(--bs-danger);"> ]</p>
+        </div>
+
+        <div class="setting-body-footer">
+            <button type="button" class="btn btn-outline-danger" id="edit-database-cancel">
+                لغو
+            </button>
+            <div style="padding: 3px;"></div>
+            <button type="button" class="btn btn-success" id="edit-database-save">
+                ذخیره تغییرات
+            </button>
+        </div>
+    </div>
+
+    <!-- lock -->
+    <div class="lock-container">
+        <div class="lock-items">
+            <div class="lock-profile-image">
+                <img src="engine/content/ikco.png" alt="ikco logo" class="image" draggable="false">
+            </div>
+            <div class="lock-profile-username">
+                <span class="username">admin</span>
+            </div>
+            <div style="padding: 10px;"></div>
+            <div class="lock-profile-input-container">
+                <div class="lock-profile-input border border-dark">
+                    <div class="lock-profile-visibility-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </div>
+                    <input type="password" class="lock-profile-input-password" autocomplete="off" spellcheck="false" maxlength="16" placeholder="گذرواژه">
+                </div>
+                <div class="unlock-button-container">
+                    <button type="button" class="btn btn-outline-secondary unlock-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                   </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lock-btn" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-offset="0,5px" title="( Ctrl + Shift + L )   قفل صفحه">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 27" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="13.4" height="11.7" rx="2" ry="2"></rect><path transform="rotate(0,10,8)" d="M 5.9 11 V 7.7 C 5.9 5.5 7.6 3.7 9.8 3.7 C 11.9 3.7 13.7 5.5 13.7 7.7 v 3.3"></path></svg>
+    </div>
+</body>
+<script src="engine/popper/popper.js "></script>
+<script src="engine/bootstrap/js/bootstrap.js "></script>
+<script src="engine/script/Crypto.js"></script>
+<script src="engine/script/persian-date.js"></script>
+<script src="engine/script/mainScript.js "></script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+
+</html>
